@@ -3,6 +3,7 @@ package com.exercise.tourdefrance_exercise.controller;
 import com.exercise.tourdefrance_exercise.model.Cyclist;
 import com.exercise.tourdefrance_exercise.repo.CyclistRepo;
 import com.exercise.tourdefrance_exercise.service.CyclistService;
+import com.exercise.tourdefrance_exercise.service.Enums.Jersey;
 import com.exercise.tourdefrance_exercise.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,13 +18,12 @@ import java.util.Objects;
 public class CyclistController extends GeneralController<Cyclist, CyclistRepo, CyclistService> {
 
     private final CyclistService service;
-    private final TeamService teamService;
+
 
     @Autowired
-    public CyclistController(CyclistService service, TeamService teamService) {
+    public CyclistController(CyclistService service) {
         super(service);
         this.service = service;
-        this.teamService = teamService;
     }
 
     @GetMapping(value = "", params = "teamId")
@@ -31,7 +31,12 @@ public class CyclistController extends GeneralController<Cyclist, CyclistRepo, C
         List<Cyclist> cyclists = service.getAll().stream()
                                         .filter(cyclist -> Objects.equals(cyclist.getTeam().getId(), id))
                                         .toList();
-        return new ResponseEntity<>(cyclists, HttpStatus.OK);
+        return new ResponseEntity<List<Cyclist>>(cyclists, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "", params = "jersey")
+    public ResponseEntity<Cyclist> getByJersey(@RequestParam(name = "jersey") Jersey jersey) {
+        return new ResponseEntity<Cyclist>(service.getByJersey(jersey), HttpStatus.OK);
     }
 
 

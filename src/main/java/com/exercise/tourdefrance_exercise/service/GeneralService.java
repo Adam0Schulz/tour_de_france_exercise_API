@@ -41,7 +41,7 @@ public abstract class GeneralService<T extends Model, R extends JpaRepository<T,
         repo.deleteById(id);
     }
 
-    // Other
+    // Extra
     public List<T> getSorted(String field, Sort.Direction direction) {
         return repo.findAll(Sort.by(direction, field));
     }

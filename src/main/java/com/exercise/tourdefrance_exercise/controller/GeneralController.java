@@ -51,7 +51,7 @@ public abstract class GeneralController<T extends Model,R extends JpaRepository<
 
     }
 
-    //Other
+    //Extra
     @GetMapping(value = "", params = {"field", "direction"})
     public ResponseEntity<List<T>> getSorted(@RequestParam(name = "field") String field, @RequestParam(name = "direction") Sort.Direction direction) {
         return new ResponseEntity<>(service.getSorted(field, direction), HttpStatus.OK);

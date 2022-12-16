@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class TeamService extends GeneralService<Team, TeamRepo> {
 
+    private final TeamRepo repo;
+
     @Autowired
     public TeamService(TeamRepo repo) {
         super(repo);
+        this.repo = repo;
     }
 }
