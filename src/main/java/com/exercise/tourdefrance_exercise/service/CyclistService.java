@@ -1,7 +1,6 @@
 package com.exercise.tourdefrance_exercise.service;
 
 import com.exercise.tourdefrance_exercise.model.Cyclist;
-import com.exercise.tourdefrance_exercise.model.SystemVariable;
 import com.exercise.tourdefrance_exercise.repo.CyclistRepo;
 import com.exercise.tourdefrance_exercise.service.Enums.Jersey;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,7 @@ public class CyclistService extends GeneralService<Cyclist, CyclistRepo> {
     // There's a "magic number" for getting the system variable - that's a bad practise
     public Cyclist getWhiteJersey() {
         return getSorted("totalTime", Sort.Direction.ASC).stream()
-                .filter((cyclist) -> cyclist.getAge() < Integer.parseInt(systemVariableService.getById(1L).getValue()))
+                .filter((cyclist) -> cyclist.getAge() < Integer.parseInt(systemVariableService.getById(1L).getStringValue()))
                 .toList()
                 .get(0);
     }

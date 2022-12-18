@@ -2,18 +2,17 @@ package com.exercise.tourdefrance_exercise.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 
 @Entity
+@Builder
 @Getter
 @Setter
-@NoArgsConstructor
 @Table(name = "teams")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Team extends Model {
 
     @Id
